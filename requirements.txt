@@ -1,0 +1,9 @@
+fastapi
+python-dotenv
+supabase
+psycopg[binary,pool]
+pydantic
+autumn
+httpx
+requests
+
