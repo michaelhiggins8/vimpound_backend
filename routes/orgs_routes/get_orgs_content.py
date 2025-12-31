@@ -12,7 +12,7 @@ async def get_orgs_content(
     """
     Get the organization content from the orgs table for the user's organization.
     Returns default_hours_of_operation, agent_name, company_name, documents_needed,
-    cost_to_release_short, cost_to_release_long, default_address, and time_zone columns from the orgs table
+    cost_to_release_short, cost_to_release_long, default_address, time_zone, and auction_triggers columns from the orgs table
     where orgs.id matches profiles.org_id and profiles.id matches the authenticated user's ID.
     Requires authentication via Bearer token in Authorization header.
     """
@@ -33,7 +33,8 @@ async def get_orgs_content(
                         o.cost_to_release_short,
                         o.cost_to_release_long,
                         o.default_address,
-                        o.time_zone
+                        o.time_zone,
+                        o.auction_triggers
                     FROM orgs o
                     INNER JOIN profiles p ON o.id = p.org_id
                     WHERE p.id = %s
@@ -58,7 +59,8 @@ async def get_orgs_content(
                     "cost_to_release_short": row[4],
                     "cost_to_release_long": row[5],
                     "default_address": row[6],
-                    "time_zone": row[7]
+                    "time_zone": row[7],
+                    "auction_triggers": row[8]
                 }
                 
     except HTTPException:

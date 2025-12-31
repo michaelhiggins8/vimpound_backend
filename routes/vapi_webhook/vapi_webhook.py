@@ -50,7 +50,8 @@ def handle_assistant_request(msg: dict) -> dict:
                     cost_to_release_long,
                     phone_number,
                     default_address,
-                    time_zone
+                    time_zone,
+                    auction_triggers
                 FROM orgs 
                 WHERE phone_number = %s 
                 LIMIT 1
@@ -86,7 +87,8 @@ def handle_assistant_request(msg: dict) -> dict:
                 "cost_to_release_short":lot["cost_to_release_short"],
                 "org_id":lot["id"],
                 "default_address":lot["default_address"],
-                "time_zone":lot["time_zone"]
+                "time_zone":lot["time_zone"],
+                "auction_triggers":lot["auction_triggers"]
             }
         }
     }
